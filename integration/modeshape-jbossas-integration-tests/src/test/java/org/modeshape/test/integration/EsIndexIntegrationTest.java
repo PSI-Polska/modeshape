@@ -50,7 +50,7 @@ import org.modeshape.jcr.api.JcrTools;
 @RunWith(Arquillian.class)
 public class EsIndexIntegrationTest {
 
-    @Resource(mappedName = "/jcr/repo-with-es-index")
+    @Resource(mappedName = "java:/jcr/repo-with-es-index")
     private JcrRepository repository;
     private Session session;
     private boolean print;

@@ -50,7 +50,7 @@ import org.modeshape.jcr.api.federation.FederationManager;
 @RunWith( Arquillian.class )
 public class FederationIntegrationTest {
 
-    @Resource( mappedName = "/jcr/federatedRepository" )
+    @Resource( mappedName = "java:/jcr/federatedRepository" )
     private JcrRepository repository;
 
     @Deployment

@@ -43,7 +43,7 @@ import org.modeshape.jcr.ValidateQuery.ValidationBuilder;
 @RunWith(Arquillian.class)
 public class QueryIntegrationTest {
 
-    @Resource(mappedName = "/jcr/query")
+    @Resource(mappedName = "java:/jcr/query")
     private JcrRepository repository;
     private Session session;
     private Node testRoot;

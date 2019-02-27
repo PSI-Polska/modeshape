@@ -151,6 +151,16 @@
             <unpack>false</unpack>
         </dependencySet>
 
+        <!-- Module for JGroups -->
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>modules/org/jgroups/${jgroups.module.slot}</outputDirectory>
+            <includes>
+                <include>org.jgroups:jgroups:jar</include>
+            </includes>
+            <unpack>false</unpack>
+        </dependencySet>
+
         <!-- Module for Tika (self-contained) -->
         <dependencySet>
             <useProjectArtifact>false</useProjectArtifact>

@@ -30,7 +30,7 @@ import javax.jcr.Session;
  */
 public class CDIRepositoryProvider {
 
-    @Resource( mappedName = "/jcr/sample" )
+    @Resource( mappedName = "java:/jcr/sample" )
     @Produces
     private Repository sampleRepository;
 

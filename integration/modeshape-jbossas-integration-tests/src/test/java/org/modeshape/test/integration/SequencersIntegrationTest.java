@@ -64,7 +64,7 @@ public class SequencersIntegrationTest {
 
     private static final String SEQUENCING_EXPRESSION_INPUT_ROOT = "files";
 
-    @Resource( mappedName = "/jcr/artifacts" )
+    @Resource( mappedName = "java:/jcr/artifacts" )
     private JcrRepository repository;
 
     private JcrTools jcrTools = new JcrTools();

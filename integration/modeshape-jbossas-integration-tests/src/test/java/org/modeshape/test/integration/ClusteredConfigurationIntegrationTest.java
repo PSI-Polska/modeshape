@@ -31,6 +31,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.modeshape.common.FixFor;
@@ -81,7 +82,9 @@ public class ClusteredConfigurationIntegrationTest {
         checkRepoConfiguration(clusteredRepository2, "modeshape-wf-it1", true, true);
         checkRepoStarted(clusteredRepository1, clusteredRepository2);
     }
-    
+
+    // TODO: Verify if https://issues.jboss.org/browse/MODE-2726 is resolved.
+    @Ignore("Ignored because this version of Modeshape uses external JGroups library.")
     @Test
     public void clusteredRepositoryShouldHaveStartedUsingInternalJGroupsConfig() throws Exception {
         checkRepoConfiguration(clusteredRepository3, "modeshape-wf-it2", false, true);

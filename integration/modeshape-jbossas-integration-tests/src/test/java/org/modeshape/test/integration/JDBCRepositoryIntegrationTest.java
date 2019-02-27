@@ -54,7 +54,7 @@ public class JDBCRepositoryIntegrationTest {
 
     private static final JcrTools JCR_TOOLS = new JcrTools();
     
-    @Resource (mappedName =  "/jcr/dbBinaryJDBCRepository")
+    @Resource (mappedName =  "java:/jcr/dbBinaryJDBCRepository")
     private JcrRepository repository;
 
     @Deployment

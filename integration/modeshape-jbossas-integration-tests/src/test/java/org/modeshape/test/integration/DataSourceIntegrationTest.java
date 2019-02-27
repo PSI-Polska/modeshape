@@ -50,10 +50,10 @@ public class DataSourceIntegrationTest {
      */
     private static final String DS_DEFAULT_WORKSPACE = "extra";
 
-    @Resource( mappedName = "datasources/ModeShapeDS" )
+    @Resource( mappedName = "java:/datasources/ModeShapeDS" )
     private DataSource modeshapeDS;
 
-    @Resource( mappedName = "/jcr/artifacts" )
+    @Resource( mappedName = "java:/jcr/artifacts" )
     private JcrRepository repository;
 
     private Connection connection;

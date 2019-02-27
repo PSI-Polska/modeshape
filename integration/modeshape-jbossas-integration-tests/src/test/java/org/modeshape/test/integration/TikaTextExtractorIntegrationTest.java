@@ -64,7 +64,7 @@ public class TikaTextExtractorIntegrationTest {
                          .setManifest(new File("src/main/webapp/META-INF/MANIFEST.MF"));
     }
 
-    @Resource( mappedName = "/jcr/query" )
+    @Resource( mappedName = "java:/jcr/query" )
     private JcrRepository repository;
    
     @Before

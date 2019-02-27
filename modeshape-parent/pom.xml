@@ -132,7 +132,7 @@
         <version.org.jboss.spec.javax.transaction.jboss-transaction-api_1.2_spec>1.0.1.Final</version.org.jboss.spec.javax.transaction.jboss-transaction-api_1.2_spec>
         <version.com.github.ben-manes.caffeine>2.3.3</version.com.github.ben-manes.caffeine>
         <version.org.jgroups>3.6.10.Final</version.org.jgroups>
-        <jgroups.module.slot>main</jgroups.module.slot>
+        <jgroups.module.slot>jgroups-3.6</jgroups.module.slot>
         
         <version.org.jboss.logging>3.3.0.Final</version.org.jboss.logging>
         <version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.1_spec>1.0.0.Final</version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.1_spec>
@@ -198,8 +198,8 @@
         <version.docker.sqlserver>latest</version.docker.sqlserver> <!-- currently there are no tags for this image -->
               
         <!--Properties which must be used when installing locally a server ZIP distribution -->
-        <version.org.wildfly>10.1.0.Final</version.org.wildfly>
-        <version.org.wildfly.core>2.2.0.Final</version.org.wildfly.core>
+        <version.org.wildfly>15.0.1.Final</version.org.wildfly>
+        <version.org.wildfly.core>7.0.0.Final</version.org.wildfly.core>
 
         <!-- The id of the maven distribution which is building the current wf kit -->
         <wf.dist.id>jboss-wf-dist</wf.dist.id>

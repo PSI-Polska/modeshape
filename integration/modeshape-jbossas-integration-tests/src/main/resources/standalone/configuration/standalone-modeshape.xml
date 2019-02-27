@@ -524,18 +524,22 @@
                         cluster-config="${jboss.server.config.dir}/modeshape/jgroups-test-config.xml">
                 <db-persistence data-source-jndi-name="java:jboss/datasources/ModeshapeClusterDS1"/>
             </repository>
-         
+
+            <!-- This version of Modeshape uses external jgroups version as a workaround for
+            https://issues.jboss.org/browse/MODE-2726, thus the following repositories were modified to use external
+            configuration file.
+            -->
             <repository name="repo-clustered3"
                         anonymous-roles="admin"
                         cluster-name="modeshape-wf-it2"
-                        cluster-stack="tcp"
+                        cluster-config="${jboss.server.config.dir}/modeshape/jgroups-test-config.xml"
                         cluster-locking="db">
                 <db-persistence data-source-jndi-name="java:jboss/datasources/ModeshapeClusterDS2"/>
             </repository>
             <repository name="repo-clustered4" 
                         anonymous-roles="admin"
                         cluster-name="modeshape-wf-it2"
-                        cluster-stack="tcp"
+                        cluster-config="${jboss.server.config.dir}/modeshape/jgroups-test-config.xml"
                         cluster-locking="db">
                 <db-persistence data-source-jndi-name="java:jboss/datasources/ModeshapeClusterDS2"/>
             </repository>
