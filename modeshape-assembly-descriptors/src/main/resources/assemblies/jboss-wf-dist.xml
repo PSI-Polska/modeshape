@@ -283,6 +283,7 @@
                 <include>xerces:xercesImpl:jar</include>
                 <include>org.odftoolkit:odfdom-java:jar</include>
                 <include>org.odftoolkit:simple-odf:jar</include>
+                <include>xml-apis:xml-apis:jar</include>
             </includes>
         </dependencySet>
 
@@ -293,6 +294,7 @@
                 <include>org.modeshape:modeshape-sequencer-msoffice:jar</include>
                 <include>org.apache*:poi:jar</include>
                 <include>org.apache*:poi-scratchpad:jar</include>
+                <include>org.apache*:commons-collections4:jar</include>
             </includes>
         </dependencySet>
 

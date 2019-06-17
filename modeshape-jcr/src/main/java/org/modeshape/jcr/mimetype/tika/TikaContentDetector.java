@@ -15,6 +15,8 @@
  */
 package org.modeshape.jcr.mimetype.tika;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import org.apache.tika.detect.DefaultDetector;
 import org.apache.tika.detect.Detector;
@@ -71,6 +73,10 @@ public final class TikaContentDetector extends TikaMimeTypeDetector {
         MediaType detectedMimeType = null;
         try {
             if (inputStream != null) {
+                if (!(inputStream instanceof BufferedInputStream)
+                        && !(inputStream instanceof ByteArrayInputStream)) {
+                    inputStream = new BufferedInputStream(inputStream);
+                }
                 try (TikaInputStream tikaInputStream = TikaInputStream.get(inputStream)) {
                     detectedMimeType = detector.detect(tikaInputStream, metadata);
                 } 

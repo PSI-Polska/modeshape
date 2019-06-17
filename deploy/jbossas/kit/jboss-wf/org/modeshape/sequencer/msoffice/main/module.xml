@@ -20,6 +20,7 @@
         <resource-root path="modeshape-sequencer-msoffice-${project.version}.jar" />
         <resource-root path="poi-${version.org.apache.poi}.jar" />
         <resource-root path="poi-scratchpad-${version.org.apache.poi}.jar" />
+        <resource-root path="commons-collections4-4.2.jar" />
     </resources>
 
     <dependencies>

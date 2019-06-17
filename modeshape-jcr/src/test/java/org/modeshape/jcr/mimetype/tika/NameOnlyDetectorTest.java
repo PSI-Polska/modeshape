@@ -66,7 +66,8 @@ public class NameOnlyDetectorTest {
 
     @Test
     public void shouldProvideMimeTypeForEmf() throws Exception {
-        testMimeType("test.emf", "application/x-emf");
+        //testMimeType("test.emf", "application/x-emf");
+        testMimeType("test.emf", "image/emf");
     }
 
     @Test
@@ -76,7 +77,8 @@ public class NameOnlyDetectorTest {
 
     @Test
     public void shouldProvideMimeTypeForPcx() throws Exception {
-        testMimeType("test.pcx", "image/x-pcx");
+       // testMimeType("test.pcx", "image/x-pcx");
+        testMimeType("test.pcx", "image/vnd.zbrush.pcx");
     }
 
     @Test
@@ -121,7 +123,8 @@ public class NameOnlyDetectorTest {
 
     @Test
     public void shouldProvideMimeTypeForBitmap() throws Exception {
-        testMimeType("test.bmp", "image/x-ms-bmp");
+        //testMimeType("test.bmp", "image/x-ms-bmp");
+        testMimeType("test.bmp", "image/bmp");
     }
 
     @Test
@@ -141,7 +144,8 @@ public class NameOnlyDetectorTest {
 
     @Test
     public void shouldProvideMimeTypeForWave() throws Exception {
-        testMimeType("test.wav", "audio/x-wav");
+        //testMimeType("test.wav", "audio/x-wav");
+        testMimeType("test.wav", "audio/vnd.wave");
     }
 
     @Test

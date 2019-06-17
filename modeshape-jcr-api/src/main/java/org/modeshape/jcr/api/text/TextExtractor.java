@@ -15,6 +15,8 @@
  */
 package org.modeshape.jcr.api.text;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
@@ -83,6 +85,10 @@ public abstract class TextExtractor {
         InputStream stream = binary.getStream();
         if (stream == null) {
             throw new IllegalArgumentException("The binary value is empty");
+        }
+        if (!(stream instanceof BufferedInputStream)
+                && !(stream instanceof ByteArrayInputStream)) {
+            stream = new BufferedInputStream(stream);
         }
 
         try {

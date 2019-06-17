@@ -4,7 +4,8 @@
         <resource-root path="modeshape-sequencer-odf-${project.version}.jar" />
         <resource-root path="odfdom-java-${version.org.odftoolkit.odfdom-java}.jar" />
         <resource-root path="simple-odf-${version.org.odftoolkit.simple-odf}.jar" />
-        <resource-root path="xercesImpl-2.9.1.jar" />
+        <resource-root path="xercesImpl-2.12.0.jar" />
+        <resource-root path="xml-apis-1.4.01.jar" />
     </resources>
 
     <dependencies>
