@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.modeshape</groupId>
     <artifactId>modeshape-parent</artifactId>
-    <version>5.4.1-2-PSI-SNAPSHOT</version>
+    <version>5.4.1-2-PSI-ALPHA-1</version>
     <name>ModeShape Parent</name>
 
     <url>http://www.modeshape.org</url>
