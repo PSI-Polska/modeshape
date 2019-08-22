@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.modeshape</groupId>
     <artifactId>modeshape-parent</artifactId>
-    <version>5.4.1-2-PSI-SNAPSHOT</version>
+    <version>5.4.1-2-PSI-ALPHA-2</version>
     <name>ModeShape Parent</name>
 
     <url>http://www.modeshape.org</url>
@@ -2094,4 +2094,15 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>community-deploy</id>
+            <url>http://infra-bln-3-nexus2.psi.de:8081/nexus/content/repositories/COMREL/</url>
+        </repository>
+        <snapshotRepository>
+            <id>community-deploy</id>
+            <url>http://infra-bln-3-nexus2.psi.de:8081/nexus/content/repositories/COMSNAP/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
