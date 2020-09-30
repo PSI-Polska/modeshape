@@ -883,9 +883,10 @@ public class Tuples {
                 this.types[i] = typeFactory;
                 comparators[i] = (Comparator<Object>)typeFactory.getComparator();
             }
+            int typesLen = types.length;
             this.comparator = (Comparator<TupleN> & Serializable) (arg0, arg1) -> {
                 int diff = 0;
-                for (int i = 0; i != types.length; ++i) {
+                for (int i = 0; i != typesLen; ++i) {
                     diff = comparators[i].compare(arg0.values[i], arg1.values[i]);
                     if (diff != 0) return diff;
                 }
