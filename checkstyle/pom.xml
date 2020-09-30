@@ -4,7 +4,7 @@
 
    <groupId>org.modeshape</groupId>
    <artifactId>modeshape-checkstyle</artifactId>
-   <version>5.4.1-2-PSI-ALPHA-2</version>
+    <version>5.4.1-3-PSI</version>
    <name>ModeShape Checkstyle Rules</name>
    <description>Contains the definitions for the ModeShape commons code style and conventions</description>
 
