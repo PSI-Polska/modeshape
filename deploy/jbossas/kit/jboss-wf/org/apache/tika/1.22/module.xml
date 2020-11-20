@@ -21,7 +21,7 @@
         <resource-root path="tika-core-${version.org.apache.tika}.jar" />
         <resource-root path="tika-parsers-${version.org.apache.tika}.jar" />
         <!--All the following are specific to Tika Should the tika version change, those need to change as well-->
-        <resource-root path="asm-7.1.jar" />
+        <resource-root path="asm-7.2-beta.jar" />
         <resource-root path="apache-mime4j-core-0.8.3.jar" />
         <resource-root path="apache-mime4j-dom-0.8.3.jar" />
         <resource-root path="commons-codec-1.12.jar" />
@@ -43,7 +43,7 @@
         <resource-root path="vorbis-java-core-0.8.jar" />
         <resource-root path="vorbis-java-tika-0.8.jar" />
         <resource-root path="xz-1.8.jar" />
-        <resource-root path="jackson-core-2.9.8.jar" />
+        <resource-root path="jackson-core-2.9.9.jar" />
 		<resource-root path="commons-math3-3.6.1.jar" />
 		<resource-root path="jbig2-imageio-3.0.2.jar" />
 		<resource-root path="xmpbox-2.0.3.jar" />
