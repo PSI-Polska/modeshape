@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.modeshape</groupId>
         <artifactId>modeshape-parent</artifactId>
-        <version>5.4.1-3-PSI</version>
+        <version>5.4.1-4-PSI</version>
         <relativePath>../../../modeshape-parent/pom.xml</relativePath>
     </parent>
     <artifactId>modeshape-jbossas-cmis-war</artifactId>
