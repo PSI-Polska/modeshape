@@ -20,7 +20,11 @@ import java.util.Map;
 import javax.jcr.Credentials;
 import javax.jcr.SimpleCredentials;
 import javax.security.auth.Subject;
+
+import org.jboss.as.security.plugins.JNDIBasedSecurityManagement;
+import org.jboss.modules.ModuleLoader;
 import org.jboss.security.AuthenticationManager;
+import org.jboss.security.ISecurityManagement;
 import org.modeshape.jboss.service.RepositoryService;
 import org.modeshape.jcr.ExecutionContext;
 import org.modeshape.jcr.api.JaasCredentials;
@@ -41,14 +45,16 @@ public class JBossDomainAuthenticationProvider extends EnvironmentAuthentication
 
     private static final org.jboss.logging.Logger LOGGER = org.jboss.logging.Logger.getLogger(
             JBossDomainAuthenticationProvider.class.getPackage().getName());
-    
+
     private AuthenticationManager authenticationManager;
     private JaccSubjectResolver jaccSubjectResolver;
-    
+
     @Override
     public void initialize() {
         String domainName = securityDomain();
-        this.authenticationManager = environment().getSecurityManagementServiceInjector().getValue().getAuthenticationManager(domainName);
+        ModuleLoader moduleLoader = environment().getModuleLoaderInjector().getValue();
+        ISecurityManagement securityManagement = new JNDIBasedSecurityManagement(moduleLoader);
+        this.authenticationManager = securityManagement.getAuthenticationManager(domainName);
         assert this.authenticationManager != null;
         // any JBoss container should be JACC compliant, so the necessary jars should be present in the classpath
         this.jaccSubjectResolver = new JaccSubjectResolver();
@@ -67,7 +73,7 @@ public class JBossDomainAuthenticationProvider extends EnvironmentAuthentication
             return validateSimpleCredentials((SimpleCredentials)credentials, repositoryContext);
         }
         if (credentials instanceof JaasCredentials) {
-            return getSubjectFromJaas((JaasCredentials)credentials, repositoryContext);             
+            return getSubjectFromJaas((JaasCredentials)credentials, repositoryContext);
         }
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debugv("Unknown {0} implementation: {1}. Please user either {2} or {3}", Credentials.class.getName(),
@@ -83,7 +89,7 @@ public class JBossDomainAuthenticationProvider extends EnvironmentAuthentication
         Subject subject = credentials.getLoginContext().getSubject();
         if (subject == null) {
             LOGGER.warn("Cannot authenticate because the JassCredentials instance has a login context with a null subject...");
-            return null; 
+            return null;
         }
         return repositoryContext.with(new JBossSecurityContext(new JaasSecurityContext(subject)));
     }
@@ -122,7 +128,7 @@ public class JBossDomainAuthenticationProvider extends EnvironmentAuthentication
         // there are no credentials and we failed to find a pre-authenticated subject, so return null.
         return subject != null ? repositoryContext.with(new JBossSecurityContext(new JaasSecurityContext(subject))) : null;
     }
-     
+
     @Override
     protected RepositoryService environment() {
         return (RepositoryService)super.environment();

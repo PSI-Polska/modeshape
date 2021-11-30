@@ -119,7 +119,7 @@ public class MappedListAttributeDefinition extends SimpleListAttributeDefinition
         }
 
         protected Builder setAllowNull( final boolean allowNull ) {
-            builder.setAllowNull(allowNull);
+            builder.setRequired(!allowNull);
             return this;
         }
 
