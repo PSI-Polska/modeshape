@@ -26,7 +26,6 @@ import org.jboss.as.naming.ManagedReferenceFactory;
 import org.jboss.as.naming.ServiceBasedNamingStore;
 import org.jboss.as.naming.deployment.ContextNames;
 import org.jboss.as.naming.service.BinderService;
-import org.jboss.as.security.service.SecurityManagementService;
 import org.jboss.as.server.Services;
 import org.jboss.dmr.ModelNode;
 import org.jboss.dmr.Property;
@@ -35,7 +34,6 @@ import org.jboss.msc.service.ServiceBuilder;
 import org.jboss.msc.service.ServiceController;
 import org.jboss.msc.service.ServiceName;
 import org.jboss.msc.service.ServiceTarget;
-import org.jboss.security.ISecurityManagement;
 import org.modeshape.common.util.StringUtil;
 import org.modeshape.jboss.metric.ModelMetrics;
 import org.modeshape.jboss.metric.MonitorService;
@@ -147,16 +145,16 @@ public class AddRepository extends AbstractAddStepHandler {
         if (jndiName.equals(jndiAlias)) {
             jndiAlias = null;
         }
-        
+
         if (eventBusSize != null) {
             configDoc.setNumber(FieldName.EVENT_BUS_SIZE, eventBusSize);
-        }    
+        }
         if (lockTimeoutMillis != null) {
             configDoc.setNumber(FieldName.LOCK_TIMEOUT_MILLIS, lockTimeoutMillis);
         }
-        
+
         List<String> additionalClasspathEntries = new ArrayList<>();
-        
+
         // Always set whether monitoring is enabled ...
         enableMonitoring(enableMonitoring, configDoc);
 
@@ -165,13 +163,13 @@ public class AddRepository extends AbstractAddStepHandler {
 
         // Workspace information is on the repository model node (unlike the XML) ...
         EditableDocument workspacesDoc = parseWorkspaces(context, model, configDoc, additionalClasspathEntries);
-        
+
         // security
         parseSecurity(context, model, configDoc);
 
         // Now create the repository service that manages the lifecycle of the JcrRepository instance ...
         RepositoryConfiguration repositoryConfig = new RepositoryConfiguration(configDoc, repositoryName);
-        
+
         String additionalModuleDependencies = attribute(context, model, ModelAttributes.REPOSITORY_MODULE_DEPENDENCIES, null);
         RepositoryService repositoryService = new RepositoryService(repositoryConfig, additionalModuleDependencies);
         ServiceName repositoryServiceName = ModeShapeServiceNames.repositoryServiceName(repositoryName);
@@ -181,10 +179,10 @@ public class AddRepository extends AbstractAddStepHandler {
 
         // Text Extraction
         parseTextExtraction(model, configDoc);
-        
+
         // Reindexing
         parseReindexing(model, configDoc);
-        
+
         // Journaling
         parseJournaling(repositoryService, context, model, configDoc);
 
@@ -222,7 +220,7 @@ public class AddRepository extends AbstractAddStepHandler {
                 docOpt.setNumber(FieldName.OPTIMIZATION_CHILD_COUNT_TOLERANCE, optTolerance.intValue());
             }
         }
-        
+
         if (!StringUtil.isBlank(clusterName)) {
             final String clusterConfig = attribute(context, model, ModelAttributes.CLUSTER_CONFIG, null);
             final String clusterLocking = attribute(context, model, ModelAttributes.CLUSTER_LOCKING, null);
@@ -234,14 +232,10 @@ public class AddRepository extends AbstractAddStepHandler {
             }
         }
 
-        // Add the dependency to the Security Manager
-        repositoryServiceBuilder.addDependency(SecurityManagementService.SERVICE_NAME, ISecurityManagement.class,
-                                               repositoryService.getSecurityManagementServiceInjector());
-
         repositoryServiceBuilder.addDependency(Services.JBOSS_SERVICE_MODULE_LOADER,
                                                ModuleLoader.class,
                                                repositoryService.getModuleLoaderInjector());
-        
+
         // Set up the JNDI binder service ...
         final ReferenceFactoryService<JcrRepository> referenceFactoryService = new ReferenceFactoryService<JcrRepository>();
         ServiceName referenceFactoryServiceName = ModeShapeServiceNames.referenceFactoryServiceName(repositoryName);
@@ -271,7 +265,7 @@ public class AddRepository extends AbstractAddStepHandler {
 
         // Add dependency to the data directory ...
         ServiceName dataDirServiceName = ModeShapeServiceNames.dataDirectoryServiceName(repositoryName);
-        RelativePathService.addService(dataDirServiceName, "modeshape/" + repositoryName, 
+        RelativePathService.addService(dataDirServiceName, "modeshape/" + repositoryName,
                                        ModeShapeExtension.JBOSS_DATA_DIR_VARIABLE, target);
         repositoryServiceBuilder.addDependency(dataDirServiceName, String.class, repositoryService.getDataDirectoryPathInjector());
 
@@ -285,7 +279,7 @@ public class AddRepository extends AbstractAddStepHandler {
         repositoryServiceBuilder.addDependency(defaultBinaryStorageServiceName,
                                                BinaryStorage.class,
                                                repositoryService.getBinaryStorageInjector());
-        
+
         // Add monitor service
         final MonitorService monitorService = new MonitorService();
         final ServiceBuilder<RepositoryMonitor> monitorBuilder = target.addService(ModeShapeServiceNames.monitorServiceName(repositoryName),
@@ -307,7 +301,7 @@ public class AddRepository extends AbstractAddStepHandler {
         EditableDocument clustering = configDoc.getOrCreateDocument(FieldName.CLUSTERING);
         clustering.setString(FieldName.CLUSTER_NAME, clusterName);
         if (!StringUtil.isBlank(clusterConfig)) {
-            clustering.setString(FieldName.CLUSTER_CONFIGURATION, clusterConfig);                        
+            clustering.setString(FieldName.CLUSTER_CONFIGURATION, clusterConfig);
         }
         if (!StringUtil.isBlank(clusterLocking)) {
             clustering.setString(FieldName.CLUSTER_LOCKING, clusterLocking);
@@ -326,7 +320,7 @@ public class AddRepository extends AbstractAddStepHandler {
             sequencing.set(FieldName.MAX_POOL_SIZE, maxPoolSize);
         }
     }
-   
+
     private void parseReindexing( ModelNode model, EditableDocument configDoc ) {
         if (model.hasDefined(ModelKeys.REINDEXING_ASYNC)) {
             EditableDocument reindexing = configDoc.getOrCreateDocument(FieldName.REINDEXING);
@@ -346,12 +340,12 @@ public class AddRepository extends AbstractAddStepHandler {
             EditableDocument sequencing = configDoc.getOrCreateDocument(FieldName.SEQUENCING);
             String sequencingThreadPool = model.get(ModelKeys.SEQUENCERS_THREAD_POOL_NAME).asString();
             sequencing.set(FieldName.THREAD_POOL, sequencingThreadPool);
-        }            
+        }
         if (model.hasDefined(ModelKeys.SEQUENCERS_MAX_POOL_SIZE)) {
             EditableDocument sequencing = configDoc.getOrCreateDocument(FieldName.SEQUENCING);
             int maxPoolSize = model.get(ModelKeys.SEQUENCERS_MAX_POOL_SIZE).asInt();
             sequencing.set(FieldName.MAX_POOL_SIZE, maxPoolSize);
-        }            
+        }
     }
 
     private void parseSecurity( OperationContext context,
@@ -377,7 +371,7 @@ public class AddRepository extends AbstractAddStepHandler {
         }
 
         EditableArray providers = security.getOrCreateArray(FieldName.PROVIDERS);
-        
+
         // JBoss authenticator ...
         String securityDomain = attribute(context, model, ModelAttributes.SECURITY_DOMAIN).asString();
         EditableDocument jboss = Schematic.newDocument();
@@ -429,7 +423,7 @@ public class AddRepository extends AbstractAddStepHandler {
                                   EditableDocument configDoc ) throws OperationFailedException {
         if (model.hasDefined(ModelKeys.JOURNALING)) {
             EditableDocument journaling = configDoc.getOrCreateDocument(FieldName.JOURNALING);
-            
+
             if (model.hasDefined(ModelKeys.JOURNAL_ENABLED)) {
                 boolean enabled = attribute(context, model, ModelAttributes.JOURNAL_ENABLED).asBoolean();
                 journaling.setBoolean(FieldName.JOURNAL_ENABLED, enabled);

@@ -88,7 +88,7 @@ public class ModelAttributes {
                                                  FieldName.ALLOW_CREATION)
                     .setXmlName(Attribute.ALLOW_WORKSPACE_CREATION.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set(true))
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
@@ -97,7 +97,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.WORKSPACES_CACHE_SIZE, ModelType.INT)
                     .setXmlName(Attribute.CACHE_SIZE.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .setValidator(new IntRangeValidator(1))
                     .build();
@@ -107,7 +107,7 @@ public class ModelAttributes {
                                                      new SimpleAttributeDefinitionBuilder(ModelKeys.ANONYMOUS_ROLE,
                                                                                           ModelType.STRING)
                                                              .setAllowExpression(true)
-                                                             .setAllowNull(true)
+                                                             .setRequired(false)
                                                              .setDefaultValue(new ModelNode().add(new ModelNode().set(
                                                                              ModeShapeRoles.READONLY)))
                                                              .setValidator(ROLE_NAME_VALIDATOR)
@@ -127,22 +127,22 @@ public class ModelAttributes {
                                                  .build();
 
     public static final SimpleAttributeDefinition ANONYMOUS_USERNAME =
-            new MappedAttributeDefinitionBuilder(ModelKeys.ANONYMOUS_USERNAME, ModelType.STRING, 
+            new MappedAttributeDefinitionBuilder(ModelKeys.ANONYMOUS_USERNAME, ModelType.STRING,
                                                  FieldName.SECURITY, FieldName.ANONYMOUS, FieldName.ANONYMOUS_USERNAME)
                     .setXmlName(Attribute.ANONYMOUS_USERNAME.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set("<anonymous>"))
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .setAccessConstraints(SensitiveTargetAccessConstraintDefinition.SECURITY_DOMAIN_REF)
                     .build();
 
     public static final MappedSimpleAttributeDefinition AUTHENTICATOR_CLASSNAME =
-            new MappedAttributeDefinitionBuilder(ModelKeys.AUTHENTICATOR_CLASSNAME, ModelType.STRING, 
+            new MappedAttributeDefinitionBuilder(ModelKeys.AUTHENTICATOR_CLASSNAME, ModelType.STRING,
                                                  FieldName.SECURITY, FieldName.PROVIDERS, FieldName.CLASSNAME)
                     .setXmlName(Attribute.CLASSNAME.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
 
@@ -150,7 +150,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.CLASSNAME, ModelType.STRING)
                     .setXmlName(Attribute.CLASSNAME.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -159,7 +159,7 @@ public class ModelAttributes {
                                                  ModelType.STRING)
                     .setXmlName(Attribute.REPOSITORY_MODULE_DEPENDENCIES.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -167,7 +167,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.DATA_SOURCE_JNDI_NAME, ModelType.STRING)
                     .setXmlName(Attribute.DATA_SOURCE_JNDI_NAME.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(false)
+                    .setRequired(true)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -176,7 +176,7 @@ public class ModelAttributes {
                     ModelKeys.DEFAULT_WORKSPACE, ModelType.STRING, FieldName.WORKSPACES, FieldName.DEFAULT)
                     .setXmlName(Attribute.DEFAULT_WORKSPACE.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set("default"))
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
@@ -185,7 +185,7 @@ public class ModelAttributes {
             new MappedAttributeDefinitionBuilder(
                     ModelKeys.ENABLE_MONITORING, ModelType.BOOLEAN, FieldName.MONITORING, FieldName.MONITORING_ENABLED)
                     .setXmlName(Attribute.ENABLE_MONITORING.getLocalName())
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setAllowExpression(true)
                     .setDefaultValue(new ModelNode().set(true))
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
@@ -195,7 +195,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.CLUSTER_NAME, ModelType.STRING)
                     .setXmlName(Attribute.CLUSTER_NAME.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -203,7 +203,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.CLUSTER_STACK, ModelType.STRING)
                     .setXmlName(Attribute.CLUSTER_STACK.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -211,45 +211,45 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.CLUSTER_CONFIG, ModelType.STRING)
                     .setXmlName(Attribute.CLUSTER_CONFIG.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
-    
+
     public static final SimpleAttributeDefinition CLUSTER_LOCKING =
             new SimpleAttributeDefinitionBuilder(ModelKeys.CLUSTER_LOCKING, ModelType.STRING)
                     .setXmlName(Attribute.CLUSTER_LOCKING.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .setValidator(CLUSTER_LOCKING_VALIDATOR)
                     .build();
 
     public static final MappedSimpleAttributeDefinition GARBAGE_COLLECTION_THREAD_POOL =
-            new MappedAttributeDefinitionBuilder(ModelKeys.GARBAGE_COLLECTION_THREAD_POOL, ModelType.STRING, 
+            new MappedAttributeDefinitionBuilder(ModelKeys.GARBAGE_COLLECTION_THREAD_POOL, ModelType.STRING,
                                                  FieldName.GARBAGE_COLLECTION, FieldName.THREAD_POOL)
                     .setXmlName(Attribute.GARBAGE_COLLECTION_THREAD_POOL.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set("modeshape-gc"))
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
-   
+
     public static final MappedSimpleAttributeDefinition GARBAGE_COLLECTION_INITIAL_TIME =
             new MappedAttributeDefinitionBuilder(ModelKeys.GARBAGE_COLLECTION_INITIAL_TIME, ModelType.STRING,
                                                  FieldName.GARBAGE_COLLECTION, FieldName.INITIAL_TIME)
                     .setXmlName(Attribute.GARBAGE_COLLECTION_INITIAL_TIME.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set("00:00"))
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
-    
+
     public static final MappedSimpleAttributeDefinition GARBAGE_COLLECTION_INTERVAL =
             new MappedAttributeDefinitionBuilder(ModelKeys.GARBAGE_COLLECTION_INTERVAL, ModelType.INT,
                                                  FieldName.GARBAGE_COLLECTION, FieldName.INTERVAL_IN_HOURS)
                     .setXmlName(Attribute.GARBAGE_COLLECTION_INTERVAL.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set(24))
                     .setMeasurementUnit(MeasurementUnit.HOURS)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
@@ -260,17 +260,17 @@ public class ModelAttributes {
                                                  FieldName.STORAGE, FieldName.DOCUMENT_OPTIMIZATION, FieldName.THREAD_POOL)
                     .setXmlName(Attribute.DOCUMENT_OPTIMIZATION_THREAD_POOL.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set("modeshape-opt"))
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
-    
+
     public static final MappedSimpleAttributeDefinition DOCUMENT_OPTIMIZATION_INITIAL_TIME =
             new MappedAttributeDefinitionBuilder(ModelKeys.DOCUMENT_OPTIMIZATION_INITIAL_TIME, ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.DOCUMENT_OPTIMIZATION, FieldName.INITIAL_TIME)
                     .setXmlName(Attribute.DOCUMENT_OPTIMIZATION_INITIAL_TIME.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set("00:00"))
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
@@ -280,7 +280,7 @@ public class ModelAttributes {
                                                  FieldName.STORAGE, FieldName.DOCUMENT_OPTIMIZATION, FieldName.INTERVAL_IN_HOURS)
                     .setXmlName(Attribute.DOCUMENT_OPTIMIZATION_INTERVAL.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set(24))
                     .setMeasurementUnit(MeasurementUnit.HOURS)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
@@ -291,57 +291,57 @@ public class ModelAttributes {
                                                  FieldName.STORAGE, FieldName.DOCUMENT_OPTIMIZATION, FieldName.OPTIMIZATION_CHILD_COUNT_TARGET)
                     .setXmlName(Attribute.DOCUMENT_OPTIMIZATION_CHILD_COUNT_TARGET.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setMeasurementUnit(MeasurementUnit.NONE)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
 
     public static final MappedSimpleAttributeDefinition DOCUMENT_OPTIMIZATION_CHILD_COUNT_TOLERANCE =
             new MappedAttributeDefinitionBuilder(ModelKeys.DOCUMENT_OPTIMIZATION_CHILD_COUNT_TOLERANCE, ModelType.INT,
-                                                 FieldName.STORAGE, FieldName.DOCUMENT_OPTIMIZATION, 
+                                                 FieldName.STORAGE, FieldName.DOCUMENT_OPTIMIZATION,
                                                  FieldName.OPTIMIZATION_CHILD_COUNT_TOLERANCE)
                     .setXmlName(Attribute.DOCUMENT_OPTIMIZATION_CHILD_COUNT_TOLERANCE.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setMeasurementUnit(MeasurementUnit.NONE)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
 
-    public static final MappedSimpleAttributeDefinition EVENT_BUS_SIZE = 
+    public static final MappedSimpleAttributeDefinition EVENT_BUS_SIZE =
             new MappedAttributeDefinitionBuilder(ModelKeys.EVENT_BUS_SIZE, ModelType.INT,  FieldName.EVENT_BUS_SIZE)
                     .setXmlName(Attribute.EVENT_BUS_SIZE.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setMeasurementUnit(MeasurementUnit.NONE)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
-    
-    public static final MappedSimpleAttributeDefinition LOCK_TIMEOUT_MILLIS = 
+
+    public static final MappedSimpleAttributeDefinition LOCK_TIMEOUT_MILLIS =
             new MappedAttributeDefinitionBuilder(ModelKeys.LOCK_TIMEOUT_MILLIS, ModelType.INT, FieldName.LOCK_TIMEOUT_MILLIS)
                     .setXmlName(Attribute.LOCK_TIMEOUT_MILLIS.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setMeasurementUnit(MeasurementUnit.NONE)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
 
     public static final MappedSimpleAttributeDefinition REINDEXING_ASYNC =
-            new MappedAttributeDefinitionBuilder(ModelKeys.REINDEXING_ASYNC, ModelType.BOOLEAN, 
+            new MappedAttributeDefinitionBuilder(ModelKeys.REINDEXING_ASYNC, ModelType.BOOLEAN,
                                                  FieldName.REINDEXING, FieldName.REINDEXING_ASYNC)
                     .setXmlName(Attribute.REINDEXING_ASNC.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setMeasurementUnit(MeasurementUnit.NONE)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
 
-    public static final MappedSimpleAttributeDefinition REINDEXING_MODE = 
-            new MappedAttributeDefinitionBuilder(ModelKeys.REINDEXING_MODE, ModelType.STRING, 
+    public static final MappedSimpleAttributeDefinition REINDEXING_MODE =
+            new MappedAttributeDefinitionBuilder(ModelKeys.REINDEXING_MODE, ModelType.STRING,
                                                  FieldName.REINDEXING, FieldName.REINDEXING_MODE)
                     .setXmlName(Attribute.REINDEXING_MODE.getLocalName())
                     .setAllowExpression(false)
                     .setValidator(REINDEXING_MODE_VALIDATOR)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setMeasurementUnit(MeasurementUnit.NONE)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
@@ -350,7 +350,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.INDEX_KIND, ModelType.STRING)
                     .setXmlName(Attribute.INDEX_KIND.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set(IndexKind.VALUE.toString()))
                     .setValidator(INDEX_KIND_VALIDATOR)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
@@ -360,7 +360,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.SYNCHRONOUS, ModelType.BOOLEAN)
                     .setXmlName(Attribute.SYNCHRONOUS.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set(Boolean.TRUE))
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
@@ -369,7 +369,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.JNDI_NAME, ModelType.STRING)
                     .setXmlName(Attribute.JNDI_NAME.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -379,7 +379,7 @@ public class ModelAttributes {
                                                  FieldName.MINIMUM_BINARY_SIZE_IN_BYTES)
                     .setXmlName(Attribute.MIN_VALUE_SIZE.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setMeasurementUnit(MeasurementUnit.BYTES)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
@@ -389,7 +389,7 @@ public class ModelAttributes {
                                                  FieldName.STORAGE, FieldName.BINARY_STORAGE, FieldName.MINIMUM_STRING_SIZE)
                     .setXmlName(Attribute.MIN_STRING_SIZE.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setMeasurementUnit(MeasurementUnit.NONE)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
@@ -399,7 +399,7 @@ public class ModelAttributes {
                                                  FieldName.STORAGE, FieldName.BINARY_STORAGE, FieldName.MIMETYPE_DETECTION)
                     .setXmlName(Attribute.MIME_TYPE_DETECTION.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setMeasurementUnit(MeasurementUnit.NONE)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .setValidator(MIME_TYPE_DETECTION_VALIDATOR)
@@ -409,7 +409,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.MODULE, ModelType.STRING)
                     .setXmlName(Attribute.MODULE.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -417,7 +417,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.NAME, ModelType.STRING)
                     .setXmlName(Attribute.NAME.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(false)
+                    .setRequired(true)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -425,7 +425,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.NODE_TYPE_NAME, ModelType.STRING)
                     .setXmlName(Attribute.NODE_TYPE.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode("nt:base"))
                     .setValidator(NODE_TYPE_VALIDATOR)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
@@ -435,7 +435,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.INDEX_COLUMNS, ModelType.STRING)
                     .setXmlName(Attribute.COLUMNS.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(false)
+                    .setRequired(true)
                     .setValidator(COLUMNS_VALIDATOR)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
@@ -444,7 +444,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.PROVIDER_NAME, ModelType.STRING)
                     .setXmlName(Attribute.PROVIDER_NAME.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -452,7 +452,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.WORKSPACES, ModelType.STRING)
                     .setXmlName(Attribute.WORKSPACES.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -460,7 +460,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.PATH, ModelType.STRING)
                     .setXmlName(Attribute.PATH.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -468,7 +468,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.TRASH, ModelType.STRING)
                     .setXmlName(Attribute.TRASH.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -477,7 +477,7 @@ public class ModelAttributes {
                                                      new SimpleAttributeDefinitionBuilder(ModelKeys.PATH_EXPRESSION,
                                                                                           ModelType.STRING)
                                                              .setAllowExpression(true)
-                                                             .setAllowNull(false)
+                                                             .setRequired(true)
                                                              .setValidator(PATH_EXPRESSION_VALIDATOR)
                                                              .setFlags(AttributeAccess.Flag.RESTART_NONE)
                                                              .build())
@@ -493,7 +493,7 @@ public class ModelAttributes {
                                                      new SimpleAttributeDefinitionBuilder(ModelKeys.PROJECTION,
                                                                                           ModelType.STRING)
                                                              .setAllowExpression(true)
-                                                             .setAllowNull(false)
+                                                             .setRequired(true)
                                                              .setValidator(PROJECTION_VALIDATOR)
                                                              .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                                                              .build())
@@ -505,7 +505,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.CONNECTOR_CLASSNAME, ModelType.STRING)
                     .setXmlName(Attribute.CLASSNAME.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -513,7 +513,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.CACHEABLE, ModelType.BOOLEAN)
                     .setXmlName(Attribute.CACHEABLE.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -521,7 +521,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.QUERYABLE, ModelType.BOOLEAN)
                     .setXmlName(Attribute.QUERYABLE.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -529,7 +529,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.READONLY, ModelType.BOOLEAN)
                     .setXmlName(Attribute.READONLY.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .setDefaultValue(new ModelNode(false))
                     .build();
@@ -538,7 +538,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.EXPOSE_AS_WORKSPACE, ModelType.STRING)
                     .setXmlName(Attribute.EXPOSE_AS_WORKSPACE.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -547,7 +547,7 @@ public class ModelAttributes {
                                                      new SimpleAttributeDefinitionBuilder(ModelKeys.PREDEFINED_WORKSPACE_NAME,
                                                                                           ModelType.STRING)
                                                              .setAllowExpression(true)
-                                                             .setAllowNull(false)
+                                                             .setRequired(true)
                                                              .setValidator(WORKSPACE_NAME_VALIDATOR)
                                                              .setFlags(AttributeAccess.Flag.RESTART_NONE)
                                                              .build())
@@ -560,16 +560,16 @@ public class ModelAttributes {
     public static final SimpleAttributeDefinition DEFAULT_INITIAL_CONTENT =
             new SimpleAttributeDefinitionBuilder(ModelKeys.DEFAULT_INITIAL_CONTENT, ModelType.STRING)
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setValidator(DEFAULT_INITIAL_CONTENT_VALIDATOR)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
 
     public static final ListAttributeDefinition WORKSPACES_INITIAL_CONTENT =
             MappedListAttributeDefinition.Builder.of(ModelKeys.WORKSPACES_INITIAL_CONTENT,
-                                                     new SimpleAttributeDefinitionBuilder(ModelKeys.INITIAL_CONTENT, 
+                                                     new SimpleAttributeDefinitionBuilder(ModelKeys.INITIAL_CONTENT,
                                                                                           ModelType.PROPERTY)
-                                                             .setAllowNull(false)
+                                                             .setRequired(true)
                                                              .setFlags(AttributeAccess.Flag.RESTART_NONE)
                                                              .setValidator(INITIAL_CONTENT_VALIDATOR)
                                                              .build())
@@ -581,7 +581,7 @@ public class ModelAttributes {
             MappedListAttributeDefinition.Builder.of(ModelKeys.NODE_TYPES,
                                                      new SimpleAttributeDefinitionBuilder(ModelKeys.NODE_TYPE, ModelType.STRING)
                                                              .setAllowExpression(true)
-                                                             .setAllowNull(false)
+                                                             .setRequired(true)
                                                              .setValidator(NODE_TYPE_VALIDATOR)
                                                              .setFlags(AttributeAccess.Flag.RESTART_NONE)
                                                              .build())
@@ -590,11 +590,11 @@ public class ModelAttributes {
                                                  .setMinSize(0)
                                                  .build();
 
-    public static final SimpleAttributeDefinition PROPERTY = new SimpleAttributeDefinition(ModelKeys.PROPERTY, 
+    public static final SimpleAttributeDefinition PROPERTY = new SimpleAttributeDefinition(ModelKeys.PROPERTY,
                                                                                            ModelType.PROPERTY, true);
     public static final SimpleListAttributeDefinition PROPERTIES =
             SimpleListAttributeDefinition.Builder.of(ModelKeys.PROPERTIES, PROPERTY)
-                                                 .setAllowNull(true)
+                                                 .setRequired(false)
                                                  .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                                                  .build();
 
@@ -602,7 +602,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.RELATIVE_TO, ModelType.STRING)
                     .setXmlName(Attribute.RELATIVE_TO.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set(JBOSS_DATA_DIR_VARIABLE))
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
@@ -612,7 +612,7 @@ public class ModelAttributes {
                                                  FieldName.SEQUENCING, FieldName.SEQUENCERS, FieldName.CLASSNAME)
                     .setXmlName(Attribute.CLASSNAME.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
 
@@ -621,7 +621,7 @@ public class ModelAttributes {
                                                  FieldName.SEQUENCING, FieldName.SEQUENCERS, FieldName.THREAD_POOL)
                     .setXmlName(Attribute.THREAD_POOL_NAME.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .setDefaultValue(new ModelNode().set(RepositoryConfiguration.Default.SEQUENCING_POOL))
                     .build();
@@ -631,7 +631,7 @@ public class ModelAttributes {
                                                  FieldName.SEQUENCING, FieldName.SEQUENCERS, FieldName.MAX_POOL_SIZE)
                     .setXmlName(Attribute.MAX_POOL_SIZE.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .setDefaultValue(new ModelNode().set(RepositoryConfiguration.Default.SEQUENCING_MAX_POOL_SIZE))
                     .build();
@@ -640,7 +640,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.STORE_NAME, ModelType.STRING)
                     .setXmlName(Attribute.STORE_NAME.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -649,10 +649,10 @@ public class ModelAttributes {
                                                      new SimpleAttributeDefinitionBuilder(ModelKeys.STORE_NAME,
                                                                                           ModelType.STRING)
                                                              .setAllowExpression(false)
-                                                             .setAllowNull(false)
+                                                             .setRequired(true)
                                                              .setFlags(AttributeAccess.Flag.RESTART_NONE)
                                                              .build())
-                                                 .setAllowNull(false)
+                                                 .setAllowNull(true)
                                                  .setFlags(AttributeAccess.Flag.RESTART_NONE)
                                                  .build();
 
@@ -661,7 +661,7 @@ public class ModelAttributes {
                                                  FieldName.TEXT_EXTRACTION, FieldName.EXTRACTORS, FieldName.CLASSNAME)
                     .setXmlName(Attribute.CLASSNAME.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
 
@@ -670,7 +670,7 @@ public class ModelAttributes {
                                                  FieldName.TEXT_EXTRACTION, FieldName.EXTRACTORS, FieldName.THREAD_POOL)
                     .setXmlName(Attribute.THREAD_POOL_NAME.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .setDefaultValue(new ModelNode().set(RepositoryConfiguration.Default.TEXT_EXTRACTION_POOL))
                     .build();
@@ -680,7 +680,7 @@ public class ModelAttributes {
                                                  FieldName.TEXT_EXTRACTION, FieldName.EXTRACTORS, FieldName.MAX_POOL_SIZE                                                 )
                     .setXmlName(Attribute.MAX_POOL_SIZE.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .setDefaultValue(new ModelNode().set(RepositoryConfiguration.Default.TEXT_EXTRACTION_MAX_POOL_SIZE))
                     .build();
@@ -691,7 +691,7 @@ public class ModelAttributes {
                                                  FieldName.SECURITY, FieldName.JAAS, FieldName.JAAS_POLICY_NAME)
                     .setXmlName(Attribute.SECURITY_DOMAIN.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set("modeshape-security"))
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .setAccessConstraints(SensitiveTargetAccessConstraintDefinition.SECURITY_DOMAIN_REF)
@@ -703,7 +703,7 @@ public class ModelAttributes {
                                                  FieldName.USE_ANONYMOUS_ON_FAILED_LOGINS)
                     .setXmlName(Attribute.USE_ANONYMOUS_IF_AUTH_FAILED.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set(false))
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .setAccessConstraints(SensitiveTargetAccessConstraintDefinition.SECURITY_DOMAIN_REF)
@@ -713,7 +713,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.EXPLODED, ModelType.BOOLEAN)
                     .setXmlName(Attribute.EXPLODED.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set(false))
                     .build();
 
@@ -721,7 +721,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.JOURNALING, ModelType.BOOLEAN)
                     .setXmlName(Attribute.JOURNALING.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode(false))
                     .build();
 
@@ -729,7 +729,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.JOURNAL_PATH, ModelType.STRING)
                     .setXmlName(Attribute.JOURNAL_PATH.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -737,7 +737,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.JOURNAL_ENABLED, ModelType.BOOLEAN)
                     .setXmlName(Attribute.JOURNAL_ENABLED.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -745,7 +745,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.JOURNAL_RELATIVE_TO, ModelType.STRING)
                     .setXmlName(Attribute.JOURNAL_RELATIVE_TO.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -753,7 +753,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.MAX_DAYS_TO_KEEP_RECORDS, ModelType.INT)
                     .setXmlName(Attribute.MAX_DAYS_TO_KEEP_RECORDS.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode(-1))
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
@@ -762,7 +762,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.ASYNC_WRITES, ModelType.BOOLEAN)
                     .setXmlName(Attribute.ASYNC_WRITES.getLocalName())
                     .setAllowExpression(false)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode(false))
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
@@ -771,7 +771,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.JOURNAL_GC_THREAD_POOL, ModelType.STRING)
                     .setXmlName(Attribute.JOURNAL_GC_THREAD_POOL.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set("modeshape-journaling-gc"))
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
@@ -780,7 +780,7 @@ public class ModelAttributes {
             new SimpleAttributeDefinitionBuilder(ModelKeys.JOURNAL_GC_INITIAL_TIME, ModelType.STRING)
                     .setXmlName(Attribute.JOURNAL_GC_INITIAL_TIME.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setDefaultValue(new ModelNode().set("00:00"))
                     .setFlags(AttributeAccess.Flag.RESTART_NONE)
                     .build();
@@ -790,16 +790,16 @@ public class ModelAttributes {
                                                  FieldName.STORAGE, FieldName.PERSISTENCE, RelationalDbConfig.TABLE_NAME)
                     .setXmlName(Attribute.TABLE_NAME.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
-    public static final MappedSimpleAttributeDefinition CREATE_ON_START = 
+    public static final MappedSimpleAttributeDefinition CREATE_ON_START =
             new MappedAttributeDefinitionBuilder(Attribute.CREATE_ON_START.getLocalName(), ModelType.BOOLEAN,
                                                  FieldName.STORAGE, FieldName.PERSISTENCE, RelationalDbConfig.CREATE_ON_START)
                     .setXmlName(Attribute.CREATE_ON_START.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -808,7 +808,7 @@ public class ModelAttributes {
                                                  FieldName.STORAGE, FieldName.PERSISTENCE, RelationalDbConfig.DROP_ON_EXIT)
                     .setXmlName(Attribute.DROP_ON_EXIT.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -817,61 +817,61 @@ public class ModelAttributes {
                                                  FieldName.STORAGE, FieldName.PERSISTENCE, RelationalDbConfig.COMPRESS)
                     .setXmlName(Attribute.COMPRESS.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
-                    .build(); 
-    
-    public static final MappedSimpleAttributeDefinition FETCH_SIZE = 
+                    .build();
+
+    public static final MappedSimpleAttributeDefinition FETCH_SIZE =
             new MappedAttributeDefinitionBuilder(Attribute.FETCH_SIZE.getLocalName(), ModelType.INT,
                                                  FieldName.STORAGE, FieldName.PERSISTENCE, RelationalDbConfig.COMPRESS)
                     .setXmlName(Attribute.FETCH_SIZE.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
-                    .build(); 
-    
+                    .build();
+
     public static final MappedSimpleAttributeDefinition POOL_SIZE =
             new MappedAttributeDefinitionBuilder(Attribute.POOL_SIZE.getLocalName(), ModelType.INT,
                                                  FieldName.STORAGE, FieldName.PERSISTENCE, RelationalDbConfig.POOL_SIZE)
                     .setXmlName(Attribute.POOL_SIZE.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
- 
+
     public static final MappedSimpleAttributeDefinition CONNECTION_URL =
             new MappedAttributeDefinitionBuilder(Attribute.URL.getLocalName(), ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.PERSISTENCE, RelationalDbConfig.CONNECTION_URL)
                     .setXmlName(Attribute.URL.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
-    
-    public static final MappedSimpleAttributeDefinition DRIVER = 
+
+    public static final MappedSimpleAttributeDefinition DRIVER =
             new MappedAttributeDefinitionBuilder(Attribute.DRIVER.getLocalName(), ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.PERSISTENCE, RelationalDbConfig.DRIVER)
                     .setXmlName(Attribute.DRIVER.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
-    
+
     public static final MappedSimpleAttributeDefinition USERNAME =
             new MappedAttributeDefinitionBuilder(Attribute.USERNAME.getLocalName(), ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.PERSISTENCE, RelationalDbConfig.USERNAME)
                     .setXmlName(Attribute.USERNAME.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
-    
-    public static final MappedSimpleAttributeDefinition PASSWORD = 
+
+    public static final MappedSimpleAttributeDefinition PASSWORD =
             new MappedAttributeDefinitionBuilder(Attribute.PASSWORD.getLocalName(), ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.PERSISTENCE, RelationalDbConfig.PASSWORD)
                     .setXmlName(Attribute.PASSWORD.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -881,23 +881,23 @@ public class ModelAttributes {
                                                  RelationalDbConfig.DATASOURCE_JNDI_NAME)
                     .setXmlName(Attribute.DATA_SOURCE_JNDI_NAME.getLocalName())
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
     public static final MappedSimpleAttributeDefinition FS_PATH =
-            new MappedAttributeDefinitionBuilder(Attribute.PATH.getLocalName(), ModelType.STRING, 
+            new MappedAttributeDefinitionBuilder(Attribute.PATH.getLocalName(), ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.PERSISTENCE, FileDbProvider.PATH_FIELD)
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
-    
+
     public static final MappedSimpleAttributeDefinition FS_COMPRESS =
             new MappedAttributeDefinitionBuilder(Attribute.COMPRESS.getLocalName(), ModelType.BOOLEAN,
                                                  FieldName.STORAGE, FieldName.PERSISTENCE, FileDbProvider.COMPRESS_FIELD)
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -905,39 +905,39 @@ public class ModelAttributes {
             new MappedAttributeDefinitionBuilder(Attribute.HOST.getLocalName(), ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.BINARY_STORAGE, FieldName.ADDRESS)
                     .setAllowExpression(true)
-                    .setAllowNull(false)
+                    .setRequired(true)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
-    
+
     public static final MappedSimpleAttributeDefinition MONGO_HOST =
             new MappedAttributeDefinitionBuilder(Attribute.HOST.getLocalName(), ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.BINARY_STORAGE, FieldName.HOST)
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
-    
+
     public static final MappedSimpleAttributeDefinition MONGO_PORT =
             new MappedAttributeDefinitionBuilder(Attribute.PORT.getLocalName(), ModelType.INT,
                                                  FieldName.STORAGE, FieldName.BINARY_STORAGE, FieldName.PORT)
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
-    
+
     public static final MappedSimpleAttributeDefinition MONGO_DATABASE =
             new MappedAttributeDefinitionBuilder(Attribute.DATABASE.getLocalName(), ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.BINARY_STORAGE, FieldName.DATABASE)
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
-    
+
     public static final MappedSimpleAttributeDefinition MONGO_USERNAME =
             new MappedAttributeDefinitionBuilder(Attribute.USERNAME.getLocalName(), ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.BINARY_STORAGE, FieldName.USER_NAME)
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -945,15 +945,15 @@ public class ModelAttributes {
             new MappedAttributeDefinitionBuilder(Attribute.PASSWORD.getLocalName(), ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.BINARY_STORAGE, FieldName.USER_PASSWORD)
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
-    
+
     public static final MappedSimpleAttributeDefinition MONGO_HOST_ADDRESSES =
             new MappedAttributeDefinitionBuilder(Attribute.HOST_ADDRESSES.getLocalName(), ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.BINARY_STORAGE, FieldName.HOST_ADDRESSES)
                     .setAllowExpression(true)
-                    .setAllowNull(true)
+                    .setRequired(false)
                     .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                     .build();
 
@@ -961,7 +961,7 @@ public class ModelAttributes {
             new MappedAttributeDefinitionBuilder(Attribute.USERNAME.getLocalName(), ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.BINARY_STORAGE, FieldName.USER_NAME)
                 .setAllowExpression(true)
-                .setAllowNull(false)
+                .setRequired(true)
                 .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                 .build();
 
@@ -969,7 +969,7 @@ public class ModelAttributes {
             new MappedAttributeDefinitionBuilder(Attribute.PASSWORD.getLocalName(), ModelType.STRING,
                                                  FieldName.STORAGE, FieldName.BINARY_STORAGE, FieldName.USER_PASSWORD)
                 .setAllowExpression(true)
-                .setAllowNull(false)
+                .setRequired(true)
                 .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                 .build();
 
@@ -977,7 +977,7 @@ public class ModelAttributes {
         new MappedAttributeDefinitionBuilder(Attribute.BUCKET_NAME.getLocalName(), ModelType.STRING,
                                              FieldName.STORAGE, FieldName.BINARY_STORAGE, FieldName.BUCKET_NAME)
             .setAllowExpression(true)
-            .setAllowNull(false)
+            .setRequired(true)
             .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
             .build();
 
@@ -985,7 +985,7 @@ public class ModelAttributes {
         new MappedAttributeDefinitionBuilder(Attribute.ENDPOINT_URL.getLocalName(), ModelType.STRING,
                                              FieldName.STORAGE, FieldName.BINARY_STORAGE, FieldName.ENDPOINT_URL)
                 .setAllowExpression(true)
-                .setAllowNull(true)
+                .setRequired(false)
                 .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
                 .build();
 
@@ -1001,19 +1001,19 @@ public class ModelAttributes {
         GARBAGE_COLLECTION_INITIAL_TIME, GARBAGE_COLLECTION_INTERVAL, DOCUMENT_OPTIMIZATION_THREAD_POOL,
         DOCUMENT_OPTIMIZATION_INITIAL_TIME, DOCUMENT_OPTIMIZATION_INTERVAL, DOCUMENT_OPTIMIZATION_CHILD_COUNT_TARGET,
         DOCUMENT_OPTIMIZATION_CHILD_COUNT_TOLERANCE, JOURNAL_PATH, JOURNAL_RELATIVE_TO, MAX_DAYS_TO_KEEP_RECORDS,
-        JOURNAL_GC_INITIAL_TIME, JOURNAL_GC_THREAD_POOL, ASYNC_WRITES, JOURNALING, JOURNAL_ENABLED, SEQUENCER_THREAD_POOL_NAME, SEQUENCER_MAX_POOL_SIZE, 
+        JOURNAL_GC_INITIAL_TIME, JOURNAL_GC_THREAD_POOL, ASYNC_WRITES, JOURNALING, JOURNAL_ENABLED, SEQUENCER_THREAD_POOL_NAME, SEQUENCER_MAX_POOL_SIZE,
         TEXT_EXTRACTOR_THREAD_POOL_NAME, TEXT_EXTRACTOR_MAX_POOL_SIZE, EVENT_BUS_SIZE, REINDEXING_ASYNC, REINDEXING_MODE,
         LOCK_TIMEOUT_MILLIS};
 
-    public static final AttributeDefinition[] TRANSIENT_BINARY_STORAGE_ATTRIBUTES = {MINIMUM_BINARY_SIZE, MINIMUM_STRING_SIZE, 
-                                                                                     MIME_TYPE_DETECTION}; 
-    
+    public static final AttributeDefinition[] TRANSIENT_BINARY_STORAGE_ATTRIBUTES = {MINIMUM_BINARY_SIZE, MINIMUM_STRING_SIZE,
+                                                                                     MIME_TYPE_DETECTION};
+
     public static final AttributeDefinition[] FILE_BINARY_STORAGE_ATTRIBUTES = {MINIMUM_BINARY_SIZE, MINIMUM_STRING_SIZE, PATH,
         TRASH, RELATIVE_TO, STORE_NAME, MIME_TYPE_DETECTION};
 
     public static final AttributeDefinition[] DATABASE_BINARY_STORAGE_ATTRIBUTES = {MINIMUM_BINARY_SIZE, MINIMUM_STRING_SIZE,
-        DATA_SOURCE_JNDI_NAME, STORE_NAME, MIME_TYPE_DETECTION};  
-    
+        DATA_SOURCE_JNDI_NAME, STORE_NAME, MIME_TYPE_DETECTION};
+
     public static final AttributeDefinition[] CASSANDRA_BINARY_STORAGE_ATTRIBUTES = {MINIMUM_BINARY_SIZE, MINIMUM_STRING_SIZE,
         MIME_TYPE_DETECTION, CASSANDRA_HOST };
 
@@ -1037,8 +1037,8 @@ public class ModelAttributes {
     public static final AttributeDefinition[] SEQUENCER_ATTRIBUTES = {PATH_EXPRESSIONS, SEQUENCER_CLASSNAME, MODULE, PROPERTIES};
     public static final AttributeDefinition[] PERSISTENCE_DB_ATTRIBUTES = { TABLE_NAME, CREATE_ON_START, DROP_ON_EXIT,
                                                                             FETCH_SIZE, CONNECTION_URL, DRIVER, USERNAME, PASSWORD,
-                                                                            PERSISTENCE_DS_JNDI_NAME, DB_COMPRESS, POOL_SIZE, 
-                                                                            PROPERTIES}; 
+                                                                            PERSISTENCE_DS_JNDI_NAME, DB_COMPRESS, POOL_SIZE,
+                                                                            PROPERTIES};
     public static final AttributeDefinition[] PERSISTENCE_FS_ATTRIBUTES = { FS_PATH, FS_COMPRESS};
     public static final AttributeDefinition[] SOURCE_ATTRIBUTES = { PROJECTIONS, CONNECTOR_CLASSNAME, READONLY, CACHEABLE,
                                                                     QUERYABLE, MODULE, PROPERTIES, EXPOSE_AS_WORKSPACE};
