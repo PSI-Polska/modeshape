@@ -198,8 +198,8 @@
         <version.docker.sqlserver>latest</version.docker.sqlserver> <!-- currently there are no tags for this image -->
 
         <!--Properties which must be used when installing locally a server ZIP distribution -->
-        <version.org.wildfly>15.0.1.Final</version.org.wildfly>
-        <version.org.wildfly.core>7.0.0.Final</version.org.wildfly.core>
+        <version.org.wildfly>26.1.2.Final</version.org.wildfly>
+        <version.org.wildfly.core>18.1.2.Final</version.org.wildfly.core>
 
         <!-- The id of the maven distribution which is building the current wf kit -->
         <wf.dist.id>jboss-wf-dist</wf.dist.id>
