@@ -12,9 +12,6 @@ pipeline {
         jdk 'JDK 8 Corretto'
     }
 
-    parameters {
-    }
-
     stages {
         stage('Install') {
             steps {
