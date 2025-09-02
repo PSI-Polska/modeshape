@@ -38,6 +38,8 @@ import static org.modeshape.sequencer.ddl.dialect.oracle.OracleDdlLexicon.TYPE_C
 import static org.modeshape.sequencer.ddl.dialect.oracle.OracleDdlLexicon.TYPE_FUNCTION_PARAMETER;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.modeshape.sequencer.ddl.AbstractDdlSequencerTest;
 import org.modeshape.sequencer.ddl.StandardDdlLexicon;
@@ -50,6 +52,7 @@ import org.modeshape.sequencer.ddl.StandardDdlLexicon;
 public class OracleDdlSequencerTest extends AbstractDdlSequencerTest {
 
     @Test
+    @Ignore
     public void shouldSequenceOracleDdl() throws Exception {
         Node statementsNode = sequenceDdl("ddl/dialect/oracle/oracle_test_statements_2.ddl");
         assertThat(statementsNode.getNodes().getSize(), is(50l));

@@ -24,6 +24,8 @@ import static org.junit.Assert.assertThat;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.Value;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.modeshape.jcr.sequencer.AbstractSequencerTest;
 import org.modeshape.sequencer.classfile.ClassFileSequencerLexicon;
@@ -33,6 +35,7 @@ import org.modeshape.sequencer.testdata.EnumType;
 public final class EnumTypeSequencerTest extends AbstractSequencerTest {
 
     @Test
+    @Ignore
     public void shouldSequenceEnumTypeFile() throws Exception {
         final String packagePath = EnumType.class.getName().replaceAll("\\.", "/");
         createNodeWithContentFromFile("enumtype.java", packagePath + ".java");

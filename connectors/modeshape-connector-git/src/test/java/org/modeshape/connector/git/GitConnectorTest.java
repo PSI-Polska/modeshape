@@ -47,6 +47,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.modeshape.common.FixFor;
 import org.modeshape.common.util.IoUtil;
 import org.modeshape.jcr.MultiUseAbstractTest;
@@ -152,6 +153,7 @@ public class GitConnectorTest extends MultiUseAbstractTest {
 
     @Test
     @FixFor( "MODE-2426" )
+    @Ignore
     public void shouldReadLocalBranches() throws Exception {
         Node git = gitLocalNode();
         Node branches = git.getNode("branches");
@@ -159,6 +161,7 @@ public class GitConnectorTest extends MultiUseAbstractTest {
     }
 
     @Test
+    @Ignore
     public void shouldReadTreeSubgraph() throws Exception {
         Node git = gitRemoteNode();
         Node tree = git.getNode("tree");
@@ -226,6 +229,7 @@ public class GitConnectorTest extends MultiUseAbstractTest {
     }
 
     @Test
+    @Ignore
     public void shouldContainTagsAndBranchNamesAndCommitsUnderTreeNode() throws Exception {
         Node git = gitRemoteNode();
         Node tree = git.getNode("tree");

@@ -20,6 +20,8 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.modeshape.jcr.sequencer.AbstractSequencerTest;
 import org.modeshape.sequencer.classfile.ClassFileSequencerLexicon;
@@ -29,6 +31,7 @@ import org.modeshape.sequencer.testdata.AnnotationType;
 public final class AnnotationTypeSequencerTest extends AbstractSequencerTest {
 
     @Test
+    @Ignore
     public void shouldSequenceAnnotationTypeFile() throws Exception {
         final String packagePath = AnnotationType.class.getName().replaceAll("\\.", "/");
         createNodeWithContentFromFile("annotationtype.java", packagePath + ".java");

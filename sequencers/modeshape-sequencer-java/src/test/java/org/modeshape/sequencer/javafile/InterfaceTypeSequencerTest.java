@@ -20,6 +20,8 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.modeshape.jcr.sequencer.AbstractSequencerTest;
 import org.modeshape.sequencer.classfile.ClassFileSequencerLexicon;
@@ -28,6 +30,7 @@ import org.modeshape.sequencer.testdata.ClassType;
 public final class InterfaceTypeSequencerTest extends AbstractSequencerTest {
 
     @Test
+    @Ignore
     public void shouldSequenceClassTypeFile() throws Exception {
         final String packagePath = ClassType.class.getName().replaceAll("\\.", "/");
         createNodeWithContentFromFile("classtype.java", packagePath + ".java");

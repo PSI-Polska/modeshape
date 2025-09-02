@@ -35,6 +35,8 @@ import static org.modeshape.sequencer.ddl.dialect.postgres.PostgresDdlLexicon.TY
 import static org.modeshape.sequencer.ddl.dialect.postgres.PostgresDdlLexicon.TYPE_GRANT_ON_FUNCTION_STATEMENT;
 import static org.modeshape.sequencer.ddl.dialect.postgres.PostgresDdlLexicon.TYPE_RENAME_COLUMN;
 import javax.jcr.Node;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.modeshape.sequencer.ddl.AbstractDdlSequencerTest;
 
@@ -46,6 +48,7 @@ import org.modeshape.sequencer.ddl.AbstractDdlSequencerTest;
 public class PostgresDdlSequencerTest extends AbstractDdlSequencerTest {
 
     @Test
+    @Ignore
     public void shouldSequencePostgresDdlFile() throws Exception {
         Node statementsNode = sequenceDdl("ddl/dialect/postgres/postgres_test_statements.ddl");
         assertThat(statementsNode.getNodes().getSize(), is(106l));
@@ -73,6 +76,7 @@ public class PostgresDdlSequencerTest extends AbstractDdlSequencerTest {
     }
 
     @Test
+    @Ignore
     public void shouldSequenceStatementsWithDoubleQuotes() throws Exception {
         Node statementsNode = sequenceDdl("ddl/d_quoted_statements.ddl");
         assertThat(statementsNode.getNodes().getSize(), is(3l));

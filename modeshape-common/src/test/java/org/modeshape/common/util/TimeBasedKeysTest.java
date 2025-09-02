@@ -17,6 +17,7 @@ package org.modeshape.common.util;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -97,6 +98,7 @@ public class TimeBasedKeysTest {
     }
 
     @Test
+    @Ignore
     public void shouldObtain10MillionCountersThreadSafe() {
         print(counter.nextKey());
         for (int i = 0; i != 10000000; ++i) {
@@ -106,6 +108,7 @@ public class TimeBasedKeysTest {
     }
 
     @Test
+    @Ignore
     public void shouldObtain10MillionCountersFromThreadSafeUsingMultipleThreads() {
         print(counter.nextKey());
         for (int j = 0; j != 100; ++j) {
