@@ -150,7 +150,7 @@ public class FileSystemBinaryStore extends AbstractBinaryStore {
         final Lock lock = locks.writeLock(key.toString());
         try {
             // Now that we know the SHA-1, see if there is already an existing file in storage ...
-            if (persistedFile.exists() && hashEquals(tmpFile, persistedFile)) {
+            if (persistedFile.exists()) {
                 //if there's a trash file for this file remove it
                 removeTrashFile(key);
                 // There is an existing file, so go ahead and return a binary value that uses the existing file ...
@@ -164,16 +164,6 @@ public class FileSystemBinaryStore extends AbstractBinaryStore {
             lock.unlock();
         }
         return new StoredBinaryValue(this, key, persistedFile.length());
-    }
-
-    private boolean hashEquals(File file1, File file2) throws BinaryStoreException {
-        try {
-            return SecureHash.asHexString(SecureHash.getHash(Algorithm.SHA_1, file1))
-                    .equals(SecureHash.asHexString(SecureHash.getHash(Algorithm.SHA_1, file2)));
-        } catch (NoSuchAlgorithmException | IOException e) {
-            throw new BinaryStoreException(String.format("Exception during hash comparison of files: %s and %s", file1.getAbsolutePath(),
-                    file2.getAbsolutePath()), e);
-        }
     }
 
     private void sleep( long millis ) {
