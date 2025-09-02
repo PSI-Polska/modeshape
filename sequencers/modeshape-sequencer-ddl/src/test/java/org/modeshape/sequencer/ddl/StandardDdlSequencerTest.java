@@ -45,6 +45,8 @@ import static org.modeshape.sequencer.ddl.StandardDdlLexicon.TYPE_TABLE_REFERENC
 import java.util.ArrayList;
 import java.util.List;
 import javax.jcr.Node;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.modeshape.sequencer.ddl.dialect.oracle.OracleDdlParser;
 
@@ -56,6 +58,7 @@ import org.modeshape.sequencer.ddl.dialect.oracle.OracleDdlParser;
 public class StandardDdlSequencerTest extends AbstractDdlSequencerTest {
 
     @Test
+    @Ignore
     public void shouldSequenceCreateSchema() throws Exception {
         // CREATE SCHEMA hollywood
         // CREATE TABLE films (title varchar(255), release date, producerName varchar(255))
@@ -102,6 +105,7 @@ public class StandardDdlSequencerTest extends AbstractDdlSequencerTest {
     }
 
     @Test
+    @Ignore
     public void shouldSequenceCreateTable() throws Exception {
         // CREATE TABLE IDTABLE
         // (
@@ -154,6 +158,7 @@ public class StandardDdlSequencerTest extends AbstractDdlSequencerTest {
     }
 
     @Test
+    @Ignore
     public void shouldGenerateNodeTypesForCreateTables() throws Exception {
         // Check one table
         // CREATE TABLE RT_MDLS

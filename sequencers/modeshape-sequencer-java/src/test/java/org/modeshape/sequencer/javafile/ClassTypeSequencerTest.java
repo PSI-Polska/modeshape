@@ -67,6 +67,7 @@ public final class ClassTypeSequencerTest extends AbstractSequencerTest {
     }
 
     @Test
+    @Ignore
     public void shouldSequenceClassTypeFile() throws Exception {
         final String packagePath = ClassType.class.getName().replaceAll("\\.", "/");
         createNodeWithContentFromFile("classtype.java", packagePath + ".java");

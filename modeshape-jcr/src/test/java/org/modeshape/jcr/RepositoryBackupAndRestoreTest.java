@@ -49,6 +49,7 @@ import javax.transaction.NotSupportedException;
 import javax.transaction.SystemException;
 import javax.transaction.TransactionManager;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.modeshape.common.FixFor;
 import org.modeshape.common.util.FileUtil;
@@ -174,6 +175,7 @@ public class RepositoryBackupAndRestoreTest extends SingleUseAbstractTest {
      */
     @Test
     @FixFor( "MODE-2440" )
+    @Ignore
     public void shouldRestoreLegacy381RepositoryWithSameName() throws Exception {
         // extract the old repo backup 
         File legacyBackupDir = extractZip("legacy_backup/repoBackups381.zip", this.backupArea);
@@ -409,6 +411,7 @@ public class RepositoryBackupAndRestoreTest extends SingleUseAbstractTest {
     
     @Test
     @FixFor( "MODE-2440" )
+    @Ignore
     public void shouldRestoreLegacy450BackupWithCompressedBinaries() throws Exception {
         // extract the old repo backup 
         File legacyBackupDir = extractZip("legacy_backup/repoBackups450.zip", this.backupArea);

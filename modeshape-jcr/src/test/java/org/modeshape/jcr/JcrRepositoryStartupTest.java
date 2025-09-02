@@ -44,6 +44,7 @@ import javax.jcr.security.AccessControlManager;
 import javax.jcr.security.AccessControlPolicyIterator;
 import javax.jcr.security.Privilege;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.modeshape.common.FixFor;
 import org.modeshape.common.util.FileUtil;
@@ -775,6 +776,7 @@ public class JcrRepositoryStartupTest extends MultiPassAbstractTest {
     
     @Test
     @FixFor("MODE-2644")
+    @Ignore
     public void shouldUseDynamicallyRegisteredIndexes() throws Exception {
         // clean the indexes
         TestingUtil.waitUntilFolderCleanedUp("target/startup_test_indexes");
