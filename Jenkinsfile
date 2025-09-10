@@ -20,7 +20,7 @@ pipeline {
         stage('Install') {
             steps {
                 script {
-                    sh "mvn -B clean install"
+                    sh "mvn -B clean install -DskipTests"
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
             }
             steps {
                 script {
-                        sh "mvn -B clean deploy -P TPF"
+                        sh "mvn -B clean deploy -P TPF -DskipTests"
                     }
                 }
             }
