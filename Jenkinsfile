@@ -12,6 +12,10 @@ pipeline {
         jdk 'JDK 8 Corretto'
     }
 
+    parameters {
+             booleanParam(name: 'RELEASE_FLAG', defaultValue: false, description: 'Release new version.')
+    }
+
     stages {
         stage('Install') {
             steps {
@@ -20,5 +24,19 @@ pipeline {
                 }
             }
         }
+        stage('Deploy') {
+            when {
+                allOf {
+                    expression {
+                        params.release == true
+                    }
+                }
+            }
+            steps {
+                script {
+                        sh "mvn -B clean deploy -P TPF"
+                    }
+                }
+            }
     }
 }
