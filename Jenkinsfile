@@ -20,7 +20,7 @@ pipeline {
         stage('Install') {
             when {
                 expression {
-                    params.release == false
+                    params.RELEASE_FLAG == false
                 }
             }
             steps {
@@ -32,7 +32,7 @@ pipeline {
         stage('Deploy') {
             when {
                 expression {
-                    params.release == true
+                    params.RELEASE_FLAG == true
                 }
             }
             steps {
