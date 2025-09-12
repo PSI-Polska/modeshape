@@ -18,6 +18,11 @@ pipeline {
 
     stages {
         stage('Install') {
+            when {
+                expression {
+                    params.release == false
+                }
+            }
             steps {
                 script {
                     sh "mvn -B clean install -DskipTests"
@@ -26,10 +31,8 @@ pipeline {
         }
         stage('Deploy') {
             when {
-                allOf {
-                    expression {
-                        params.release == true
-                    }
+                expression {
+                    params.release == true
                 }
             }
             steps {
