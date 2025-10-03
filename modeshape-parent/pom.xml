@@ -169,6 +169,8 @@
         <version.org.eclipse.emf.ecore-change>2.2.3</version.org.eclipse.emf.ecore-change>
         <version.org.eclipse.emf.ecore-xmi>2.4.1</version.org.eclipse.emf.ecore-xmi>
         <!-- nightmare end -->
+        <!-- In case of changing tika version remember to change name of folder in -->
+        <!-- modeshape\deploy\jbossas\kit\jboss-wf\org\apache\tika  -->
         <version.org.apache.tika>1.22-1-PSI</version.org.apache.tika>
         <version.com.drewnoakes.metadata-extractor>2.6.2</version.com.drewnoakes.metadata-extractor>
         <version.org.apache.lucene>6.4.1</version.org.apache.lucene>
